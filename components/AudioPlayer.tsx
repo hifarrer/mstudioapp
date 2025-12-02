@@ -25,7 +25,6 @@ export default function AudioPlayer({ audioUrl }: AudioPlayerProps) {
       cursorColor: "#ffffff",
       barWidth: 2,
       barRadius: 3,
-      responsive: true,
       height: 100,
       normalize: true,
     });
