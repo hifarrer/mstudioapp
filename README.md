@@ -79,3 +79,6 @@ npm run dev
 - Tailwind CSS
 - WaveSurfer.js (for waveform visualization)
 
+
+
+

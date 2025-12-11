@@ -3,6 +3,7 @@
 import { useState } from "react";
 import AudioToAudio from "@/components/AudioToAudio";
 import TextToAudio from "@/components/TextToAudio";
+import TextToMusic2 from "@/components/TextToMusic2";
 import AudioEdit from "@/components/AudioEdit";
 import StemSeparation from "@/components/StemSeparation";
 import SoundEffects from "@/components/SoundEffects";
@@ -11,7 +12,8 @@ import AudioIsolation from "@/components/AudioIsolation";
 import Dubbing from "@/components/Dubbing";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<"audio-to-audio" | "text-to-audio" | "audio-edit" | "stem-separation" | "sound-effects" | "forced-alignment" | "audio-isolation" | "dubbing">("audio-to-audio");
+  const [activeTab, setActiveTab] = useState<"audio-to-audio" | "text-to-audio" | "text-to-music-2" | "audio-edit" | "stem-separation" | "sound-effects" | "forced-alignment" | "audio-isolation" | "dubbing">("audio-to-audio");
+  // Note: sound-effects, forced-alignment, and dubbing tabs are hidden but functionality is preserved
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -44,6 +46,16 @@ export default function Home() {
               Text to Audio
             </button>
             <button
+              onClick={() => setActiveTab("text-to-music-2")}
+              className={`px-6 py-2 rounded-md transition-all ${
+                activeTab === "text-to-music-2"
+                  ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-500/50"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              Text to Music 2
+            </button>
+            <button
               onClick={() => setActiveTab("audio-edit")}
               className={`px-6 py-2 rounded-md transition-all ${
                 activeTab === "audio-edit"
@@ -63,7 +75,8 @@ export default function Home() {
             >
               STEM Separation
             </button>
-            <button
+            {/* Hidden tabs - functionality preserved for future use */}
+            {/* <button
               onClick={() => setActiveTab("sound-effects")}
               className={`px-6 py-2 rounded-md transition-all ${
                 activeTab === "sound-effects"
@@ -72,8 +85,8 @@ export default function Home() {
               }`}
             >
               Sound Effects
-            </button>
-            <button
+            </button> */}
+            {/* <button
               onClick={() => setActiveTab("forced-alignment")}
               className={`px-6 py-2 rounded-md transition-all ${
                 activeTab === "forced-alignment"
@@ -82,7 +95,7 @@ export default function Home() {
               }`}
             >
               Forced Alignment
-            </button>
+            </button> */}
             <button
               onClick={() => setActiveTab("audio-isolation")}
               className={`px-6 py-2 rounded-md transition-all ${
@@ -93,7 +106,7 @@ export default function Home() {
             >
               Audio Isolation
             </button>
-            <button
+            {/* <button
               onClick={() => setActiveTab("dubbing")}
               className={`px-6 py-2 rounded-md transition-all ${
                 activeTab === "dubbing"
@@ -102,7 +115,7 @@ export default function Home() {
               }`}
             >
               Dubbing
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -110,12 +123,14 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           {activeTab === "audio-to-audio" && <AudioToAudio />}
           {activeTab === "text-to-audio" && <TextToAudio />}
+          {activeTab === "text-to-music-2" && <TextToMusic2 />}
           {activeTab === "audio-edit" && <AudioEdit />}
           {activeTab === "stem-separation" && <StemSeparation />}
-          {activeTab === "sound-effects" && <SoundEffects />}
-          {activeTab === "forced-alignment" && <ForcedAlignment />}
+          {/* Hidden tabs - functionality preserved for future use */}
+          {/* {activeTab === "sound-effects" && <SoundEffects />} */}
+          {/* {activeTab === "forced-alignment" && <ForcedAlignment />} */}
           {activeTab === "audio-isolation" && <AudioIsolation />}
-          {activeTab === "dubbing" && <Dubbing />}
+          {/* {activeTab === "dubbing" && <Dubbing />} */}
         </div>
       </div>
     </main>
