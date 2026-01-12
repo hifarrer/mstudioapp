@@ -7,7 +7,7 @@ export default function MusicProducers() {
   const [prompt, setPrompt] = useState("");
   const [lyrics, setLyrics] = useState("");
   const [musicLengthMs, setMusicLengthMs] = useState(30000);
-  const [forceInstrumental, setForceInstrumental] = useState(false);
+  const [forceInstrumental, setForceInstrumental] = useState(true);
   const [outputFormat, setOutputFormat] = useState("mp3_44100_128");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -154,16 +154,34 @@ export default function MusicProducers() {
           </p>
         </div>
 
-        {/* Lyrics */}
-        <div>
-          <label className="block text-sm font-medium mb-2">
-            Lyrics <span className="text-gray-500 font-normal">(optional)</span>
+        {/* Force Instrumental */}
+        <div className="flex items-center gap-3">
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              checked={forceInstrumental}
+              onChange={(e) => setForceInstrumental(e.target.checked)}
+              className="sr-only peer"
+            />
+            <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-blue-600 peer-checked:to-cyan-600"></div>
+            <span className="ml-3 text-sm font-medium">Force Instrumental</span>
           </label>
-          <textarea
-            value={lyrics}
-            onChange={(e) => setLyrics(e.target.value)}
-            rows={10}
-            placeholder={`[Verse 1]
+          <p className="text-xs text-gray-400">
+            (Ensures the generated music is instrumental, no vocals)
+          </p>
+        </div>
+
+        {/* Lyrics */}
+        {!forceInstrumental && (
+          <div>
+            <label className="block text-sm font-medium mb-2">
+              Lyrics <span className="text-gray-500 font-normal">(optional)</span>
+            </label>
+            <textarea
+              value={lyrics}
+              onChange={(e) => setLyrics(e.target.value)}
+              rows={10}
+              placeholder={`[Verse 1]
 The sun is shining bright today
 We're walking down the street
 
@@ -173,12 +191,13 @@ Our love is a sweet melody
 
 [Outro]
 Fading out now...`}
-            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 font-mono text-sm"
-          />
-          <p className="text-xs text-gray-400 mt-1">
-            Add lyrics with section markers like [Verse], [Chorus], [Bridge], [Outro]
-          </p>
-        </div>
+              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 font-mono text-sm"
+            />
+            <p className="text-xs text-gray-400 mt-1">
+              Add lyrics with section markers like [Verse], [Chorus], [Bridge], [Outro]
+            </p>
+          </div>
+        )}
 
         {/* Musical Parameters Section */}
         <div className="border-t border-gray-700 pt-6">
@@ -303,23 +322,6 @@ Fading out now...`}
           />
           <p className="text-xs text-gray-400 mt-1">
             Range: 3,000 ms (3 seconds) to 300,000 ms (5 minutes). Default: 30,000 ms (30 seconds)
-          </p>
-        </div>
-
-        {/* Force Instrumental */}
-        <div className="flex items-center gap-3">
-          <label className="relative inline-flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              checked={forceInstrumental}
-              onChange={(e) => setForceInstrumental(e.target.checked)}
-              className="sr-only peer"
-            />
-            <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-blue-600 peer-checked:to-cyan-600"></div>
-            <span className="ml-3 text-sm font-medium">Force Instrumental</span>
-          </label>
-          <p className="text-xs text-gray-400">
-            (Ensures the generated music is instrumental, no vocals)
           </p>
         </div>
 
