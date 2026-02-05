@@ -3,14 +3,67 @@
 @tailwind utilities;
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  /* Template palette (template.html) */
+  --bgTop: #141014;
+  --bgMid: #0f0c10;
+  --bgBot: #0b090c;
+  --text: #efe8e4;
+  --muted: rgba(239, 232, 228, 0.72);
+  --muted2: rgba(239, 232, 228, 0.55);
+  --stroke: rgba(255, 255, 255, 0.1);
+  --stroke2: rgba(255, 255, 255, 0.14);
+  --panel: rgba(24, 18, 23, 0.78);
+  --panel2: rgba(16, 12, 16, 0.72);
+  --orange1: #d17b50;
+  --orange2: #b8623d;
+  --radius: 18px;
+  --radius2: 22px;
+  --max: 1060px;
+  /* Legacy / semantic */
+  --background: var(--bgTop);
+  --foreground: var(--text);
+  --color-neutral-black: #0e0e0e;
+  --color-neutral-white: #efe8e4;
+  --color-neutral-900: #1c1c1c;
+  --color-neutral-700: #2a2a2a;
+  --color-neutral-500: #6e6e6e;
+  --color-neutral-300: #9a9a9a;
+  --color-accent-clay-500: #d17b50;
+  --color-accent-clay-300: #e2a08a;
+  --color-accent-clay-100: #f3d6cb;
+  --color-accent-olive-500: #6f7a4f;
+  --color-accent-olive-300: #9da88a;
+  --color-accent-olive-100: #d9ddcf;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 700px at 50% 10%, rgba(255, 255, 255, 0.05), transparent 60%),
+    radial-gradient(900px 600px at 30% 0%, rgba(209, 123, 80, 0.08), transparent 60%),
+    radial-gradient(800px 600px at 80% 30%, rgba(209, 123, 80, 0.06), transparent 62%),
+    linear-gradient(180deg, var(--bgTop), var(--bgMid) 55%, var(--bgBot));
+  overflow-x: hidden;
+}
+
+/* Grain + vignette (template.html) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 700px at 50% 20%, rgba(255, 255, 255, 0.05), transparent 58%),
+    radial-gradient(900px 650px at 50% 90%, rgba(0, 0, 0, 0.75), transparent 65%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.26'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.6;
 }
 
 @layer utilities {

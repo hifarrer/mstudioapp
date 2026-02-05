@@ -1,19 +1,20 @@
-# Music Production App MVP
+# Cadenze.io — Cadenze Studio
 
-A modern music production application built with Next.js that integrates with Wavespeed AI API to create songs, music, and sounds.
+A music production and sound design app built with Next.js, integrating Wavespeed AI. **Cadenze Studio** offers a public homepage with hero, features, FAQ, and contact, plus login/registration and a protected dashboard for songwriters and music producers.
 
 ## Features
 
-- **Audio to Audio**: Transform existing audio files with remix or lyrics editing
-- **Text to Audio**: Generate music from text prompts and lyrics
-- **Advanced Audio Player**: Waveform visualization, scrubbing, volume control, and timeline
-- **Modern UI**: Black background with gradient accents and glassmorphism effects
+- **Homepage**: Hero, features, FAQ, and contact section (Cadenze.io branding)
+- **Auth**: Email/password sign-up and login with PostgreSQL (Prisma) and NextAuth.js
+- **Dashboard** (after login): Song Writers and Music Producers flows (stem separation, dubbing, text-to-music, etc.)
+- **Design**: Studio neutral palette with earth accents (clay, olive) and semantic tokens
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
+- PostgreSQL database
 - npm or yarn
 
 ### Installation
@@ -23,17 +24,28 @@ A modern music production application built with Next.js that integrates with Wa
 npm install
 ```
 
-2. Create a `.env.local` file in the root directory:
+2. Configure environment variables. In `.env` (or `.env.local`) add:
 ```env
+# Required for database and auth
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DATABASE?schema=public"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-secret-at-least-32-characters-long"
+
+# Optional: Wavespeed API for dashboard tools
 NEXT_PUBLIC_WAVESPEED_API_KEY=your_api_key_here
 ```
 
-3. Run the development server:
+3. Run Prisma migrations to create the `User` table:
+```bash
+npx prisma migrate dev --name init
+```
+
+4. Run the development server:
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000). Use the homepage to sign up, then log in to access the dashboard.
 
 ## Project Structure
 

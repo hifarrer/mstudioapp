@@ -89,8 +89,8 @@ export default function SongWriters() {
   };
 
   return (
-    <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-      <h2 className="text-2xl font-bold mb-6 text-center">Create Your Song</h2>
+    <div className="rounded-xl p-6 border border-white/10 bg-[var(--panel)] shadow-xl">
+      <h2 className="text-2xl font-bold mb-6 text-center text-[var(--text)]">Create Your Song</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Prompt */}
@@ -101,11 +101,11 @@ export default function SongWriters() {
             onChange={(e) => setPrompt(e.target.value)}
             rows={3}
             placeholder="A pop song with a catchy chorus and upbeat melody..."
-            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500"
+            className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-2 text-[var(--text)] placeholder:text-[var(--muted2)] focus:outline-none focus:border-[var(--orange1)] focus:ring-1 focus:ring-[var(--orange1)]"
             required
             maxLength={4100}
           />
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-[var(--muted)] mt-1">
             {prompt.length}/4,100 characters
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function SongWriters() {
         {/* Lyrics */}
         <div>
           <label className="block text-sm font-medium mb-2">
-            Lyrics <span className="text-gray-500 font-normal">(optional)</span>
+            Lyrics <span className="text-[var(--muted2)] font-normal">(optional)</span>
           </label>
           <textarea
             value={lyrics}
@@ -129,9 +129,9 @@ Our love is a sweet melody
 
 [Outro]
 Fading out now...`}
-            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 font-mono text-sm"
+            className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-2 font-mono text-sm text-[var(--text)] placeholder:text-[var(--muted2)] focus:outline-none focus:border-[var(--orange1)] focus:ring-1 focus:ring-[var(--orange1)]"
           />
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-[var(--muted)] mt-1">
             Add lyrics with section markers like [Verse], [Chorus], [Bridge], [Outro]
           </p>
         </div>
@@ -148,10 +148,10 @@ Fading out now...`}
             min={3000}
             max={300000}
             step={1000}
-            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500"
+            className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-2 text-[var(--text)] placeholder:text-[var(--muted2)] focus:outline-none focus:border-[var(--orange1)] focus:ring-1 focus:ring-[var(--orange1)]"
             required
           />
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-[var(--muted)] mt-1">
             Range: 3,000 ms (3 seconds) to 300,000 ms (5 minutes). Default: 30,000 ms (30 seconds)
           </p>
         </div>
@@ -163,12 +163,12 @@ Fading out now...`}
             id="forceInstrumental"
             checked={forceInstrumental}
             onChange={(e) => setForceInstrumental(e.target.checked)}
-            className="w-5 h-5 rounded border-gray-700 bg-gray-800 text-blue-600 focus:ring-blue-500"
+            className="w-5 h-5 rounded border-white/10 bg-black/20 text-[var(--orange1)] focus:ring-[var(--orange1)]"
           />
           <label htmlFor="forceInstrumental" className="text-sm font-medium">
             Force Instrumental
           </label>
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-[var(--muted)]">
             (Ensures the generated music is instrumental, no vocals)
           </p>
         </div>
@@ -179,7 +179,7 @@ Fading out now...`}
           <select
             value={outputFormat}
             onChange={(e) => setOutputFormat(e.target.value)}
-            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500"
+            className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-2 text-[var(--text)] placeholder:text-[var(--muted2)] focus:outline-none focus:border-[var(--orange1)] focus:ring-1 focus:ring-[var(--orange1)]"
           >
             <optgroup label="MP3">
               <option value="mp3_22050_32">MP3 22.05kHz 32kbps</option>
@@ -211,7 +211,7 @@ Fading out now...`}
               <option value="alaw_8000">A-law 8kHz</option>
             </optgroup>
           </select>
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-[var(--muted)] mt-1">
             Select the audio format for the generated music
           </p>
         </div>
@@ -220,7 +220,7 @@ Fading out now...`}
         <button
           type="submit"
           disabled={isLoading || !prompt}
-          className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+          className="w-full bg-gradient-to-b from-[var(--orange1)] to-[var(--orange2)] text-white py-3 rounded-lg font-semibold hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-[0_14px_40px_rgba(209,123,80,.2)]"
         >
           {isLoading ? "Generating Music..." : "Generate Music"}
         </button>
@@ -228,17 +228,17 @@ Fading out now...`}
         {/* Progress Bar */}
         {isLoading && (
           <div className="space-y-2">
-            <div className="flex justify-between text-sm text-gray-400">
+            <div className="flex justify-between text-sm text-[var(--muted)]">
               <span>Generating your music...</span>
               <span>{Math.round(progress)}%</span>
             </div>
-            <div className="w-full bg-gray-800 rounded-full h-3 overflow-hidden">
+            <div className="w-full bg-black/20 rounded-full h-3 overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-200 ease-out"
+                className="h-full bg-gradient-to-r from-[var(--orange1)] to-[var(--orange2)] rounded-full transition-all duration-200 ease-out"
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <p className="text-xs text-gray-500 text-center">
+            <p className="text-xs text-[var(--muted2)] text-center">
               This may take a minute depending on the music length...
             </p>
           </div>

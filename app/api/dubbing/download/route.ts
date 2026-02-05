@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 const ELEVENLABS_API_BASE = "https://api.elevenlabs.io/v1";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const apiKey = process.env.ELEVENLABS_API_KEY || process.env.NEXT_PUBLIC_ELEVENLABS_API_KEY;

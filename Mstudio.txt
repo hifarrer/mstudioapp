@@ -1,0 +1,14 @@
+
+
+Use wav format as default.
+
+C,E,G (pop)
+'
+
+
+git:
+https://github.com/hifarrer/mstudioapp
+
+
+
+ask for domain name, credentials, setup email and new render account
